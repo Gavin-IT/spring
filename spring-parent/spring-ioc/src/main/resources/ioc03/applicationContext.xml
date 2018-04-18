@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="otherBean" class="com.mjk.spring.ioc03.entity.OtherBean">
+        <property name="name" value="Gavin"/>
+    </bean>
+
+    <bean id="springBean" class="com.mjk.spring.ioc03.entity.SpringBean">
+        <!-- null类型装配-->
+        <property name="name">
+            <null/>
+        </property>
+        <!-- 数组装配 数组即可以使用 array标签，也可以使用list标签-->
+        <property name="array">
+            <array>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </array>
+        </property>
+        <!-- list装配-->
+        <property name="list">
+            <list>
+                <ref bean="otherBean"/>
+                <ref bean="otherBean"/>
+                <bean class="com.mjk.spring.ioc03.entity.OtherBean">
+                    <property name="name" value="张三"/>
+                </bean>
+                <bean class="com.mjk.spring.ioc03.entity.OtherBean">
+                    <property name="name" value="李四"/>
+                </bean>
+            </list>
+        </property>
+        <!-- set-->
+        <property name="set">
+            <set>
+                <ref bean="otherBean"/>
+                <ref bean="otherBean"/>
+                <bean class="com.mjk.spring.ioc03.entity.OtherBean">
+                    <property name="name" value="张三"/>
+                </bean>
+                <bean class="com.mjk.spring.ioc03.entity.OtherBean">
+                    <property name="name" value="李四"/>
+                </bean>
+            </set>
+        </property>
+        <!-- map装配-->
+        <property name="map">
+            <map>
+                <entry key="key1" value-ref="otherBean"/>
+                <entry key="key2" value-ref="otherBean"/>
+                <entry key="key3" value-ref="otherBean"/>
+            </map>
+        </property>
+        <!-- properties装配-->
+        <property name="properties">
+            <props>
+                <prop key="key1">value1</prop>
+                <prop key="key2">value2</prop>
+                <prop key="key3">value3</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
