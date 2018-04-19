@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 一、通过构造方法进行实例化-->
+    <!-- 1、无参构造方法-->
+    <bean id="springBean01" class="com.mjk.spring.ioc06.SpringBean">
+        <property name="name" value="Gavin"/>
+        <property name="age" value="18"/>
+    </bean>
+    <!-- 2、有参构造方法-->
+    <bean id="springBean02" class="com.mjk.spring.ioc06.SpringBean">
+        <constructor-arg name="name" value="Gavin"/>
+        <constructor-arg name="age" value="19"/>
+    </bean>
+
+    <!-- 二、通过Factory进行实例化-->
+    <!-- 1、静态工厂实例化 无参-->
+    <bean id="springBean03" class="com.mjk.spring.ioc06.SpringBeanFactory" factory-method="getSpringBean">
+        <property name="name" value="Gavin"/>
+        <property name="age" value="20"/>
+    </bean>
+    <!-- 2、静态工厂实例化 有参-->
+    <bean id="springBean04" class="com.mjk.spring.ioc06.SpringBeanFactory" factory-method="getSpringBean">
+        <constructor-arg name="name" value="Gavin"/>
+        <constructor-arg name="age" value="21"/>
+    </bean>
+
+    <!-- 三、通过实例Factory进行实例化-->
+    <bean id="springBeanFactory" class="com.mjk.spring.ioc06.SpringBeanFactory"/>
+    <!-- 1、实例Factory实例化 无参-->
+    <bean id="springBean05" factory-bean="springBeanFactory" factory-method="getSpringBeanByInstance">
+        <property name="name" value="Gavin"/>
+        <property name="age" value="22"/>
+    </bean>
+    <!-- 2、实例Factory实例化 有参-->
+    <bean id="springBean06" factory-bean="springBeanFactory" factory-method="getSpringBeanByInstance">
+        <constructor-arg name="name" value="Gavin"/>
+        <constructor-arg name="age" value="23"/>
+    </bean>
+</beans>
